@@ -9,9 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var movieCollection: [UICollectionView]!
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = true
         // Do any additional setup after loading the view, typically from a nib.
     }
 
