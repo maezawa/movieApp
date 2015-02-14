@@ -13,6 +13,8 @@
 		0809DC601A8F226200BD531E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0809DC5F1A8F226200BD531E /* Images.xcassets */; };
 		0809DC631A8F226200BD531E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0809DC611A8F226200BD531E /* LaunchScreen.xib */; };
 		0809DC6F1A8F226200BD531E /* mv_A1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809DC6E1A8F226200BD531E /* mv_A1Tests.swift */; };
+		08E4D2681A8F3536001305FA /* RecMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2671A8F3536001305FA /* RecMovieViewController.swift */; };
+		08E4D26A1A8F3BAE001305FA /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2691A8F3BAE001305FA /* MsgViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		0809DC681A8F226200BD531E /* mv_A1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mv_A1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0809DC6D1A8F226200BD531E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0809DC6E1A8F226200BD531E /* mv_A1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mv_A1Tests.swift; sourceTree = "<group>"; };
+		08E4D2671A8F3536001305FA /* RecMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecMovieViewController.swift; sourceTree = "<group>"; };
+		08E4D2691A8F3BAE001305FA /* MsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				0809DC5F1A8F226200BD531E /* Images.xcassets */,
 				0809DC611A8F226200BD531E /* LaunchScreen.xib */,
 				0809DC561A8F226100BD531E /* Supporting Files */,
+				08E4D2671A8F3536001305FA /* RecMovieViewController.swift */,
+				08E4D2691A8F3BAE001305FA /* MsgViewController.swift */,
 			);
 			path = mv_A1;
 			sourceTree = "<group>";
@@ -212,8 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08E4D26A1A8F3BAE001305FA /* MsgViewController.swift in Sources */,
 				0809DC5B1A8F226100BD531E /* ViewController.swift in Sources */,
 				0809DC591A8F226100BD531E /* AppDelegate.swift in Sources */,
+				08E4D2681A8F3536001305FA /* RecMovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +413,7 @@
 				0809DC741A8F226200BD531E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0809DC751A8F226200BD531E /* Build configuration list for PBXNativeTarget "mv_A1Tests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +422,7 @@
 				0809DC771A8F226200BD531E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
