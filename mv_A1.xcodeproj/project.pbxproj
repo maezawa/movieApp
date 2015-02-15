@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		0809DC591A8F226100BD531E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809DC581A8F226100BD531E /* AppDelegate.swift */; };
 		0809DC5B1A8F226100BD531E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809DC5A1A8F226100BD531E /* ViewController.swift */; };
-		0809DC5E1A8F226200BD531E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0809DC5C1A8F226200BD531E /* Main.storyboard */; };
-		0809DC601A8F226200BD531E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0809DC5F1A8F226200BD531E /* Images.xcassets */; };
-		0809DC631A8F226200BD531E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0809DC611A8F226200BD531E /* LaunchScreen.xib */; };
 		0809DC6F1A8F226200BD531E /* mv_A1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809DC6E1A8F226200BD531E /* mv_A1Tests.swift */; };
 		08E4D2681A8F3536001305FA /* RecMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2671A8F3536001305FA /* RecMovieViewController.swift */; };
 		08E4D26A1A8F3BAE001305FA /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2691A8F3BAE001305FA /* MsgViewController.swift */; };
@@ -125,11 +122,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0809DC721A8F226200BD531E /* Build configuration list for PBXNativeTarget "mv_A1" */;
 			buildPhases = (
-				C8397D876B1176422053A334 /* Check Pods Manifest.lock */,
 				0809DC4F1A8F226100BD531E /* Sources */,
 				0809DC501A8F226100BD531E /* Frameworks */,
-				0809DC511A8F226100BD531E /* Resources */,
-				D11F9912ABEBCC407AC12F4D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,16 +190,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		0809DC511A8F226100BD531E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0809DC5E1A8F226200BD531E /* Main.storyboard in Resources */,
-				0809DC631A8F226200BD531E /* LaunchScreen.xib in Resources */,
-				0809DC601A8F226200BD531E /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		0809DC661A8F226200BD531E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,39 +198,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		C8397D876B1176422053A334 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D11F9912ABEBCC407AC12F4D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0809DC4F1A8F226100BD531E /* Sources */ = {
@@ -380,11 +331,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -394,11 +342,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -23,7 +23,36 @@ class MsgViewController: UIViewController {
     }
     
     @IBAction func saveText(sender: AnyObject) {
-        println(MsgTextArea.text)
+        let msg : NSString! = MsgTextArea.text
+        let size : CGSize = UIScreen.mainScreen().bounds.size
+        let myView : UIView = UIView(frame: CGRect(origin: CGPointZero, size: size ))
+        
+        myView.backgroundColor = UIColor.blackColor()
+        let label : UILabel = UILabel(frame: CGRectMake(0, 0, 0, 0))
+        label.text = msg
+        label.textColor = UIColor.whiteColor()
+        label.font = UIFont.systemFontOfSize(20)
+        label.textAlignment = NSTextAlignment.Center
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.layer.position = CGPoint(x: size.width / 2, y: size.height / 2)
+        myView.addSubview(label)
+        
+        UIGraphicsBeginImageContextWithOptions(myView.frame.size, false, 0)
+        myView.layer.renderInContext(UIGraphicsGetCurrentContext())
+        let image : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let saveImage : NSData = UIImagePNGRepresentation(image)
+        let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        
+        let now = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        formatter.dateFormat = "yyyyMMddHHmmss"
+        let fileName = "/" + formatter.stringFromDate(now) + ".png"
+        
+        saveImage.writeToFile(path + fileName, atomically: true)
+        
     }
     
     override func didReceiveMemoryWarning() {

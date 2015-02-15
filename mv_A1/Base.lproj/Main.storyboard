@@ -36,6 +36,10 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="JZA-KX-Ckt"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="SKs-4v-3tt"/>
+                                </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4L-kf-LqS">
                                 <rect key="frame" x="30" y="526" width="80" height="22"/>
@@ -173,6 +177,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="L8x-5h-uph"/>
-        <segue reference="GXp-Vq-drh"/>
+        <segue reference="31x-LC-O3P"/>
     </inferredMetricsTieBreakers>
 </document>
