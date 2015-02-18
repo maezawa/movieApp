@@ -22,7 +22,10 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
     var myButtonStart : UIButton!
     // ストップボタン.
     var myButtonStop : UIButton!
-    
+	
+		@IBOutlet var startBtn: UIButton!
+		@IBOutlet var stopBtn: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,64 +81,59 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
         
         // セッション開始.
         mySession.startRunning()
-        
-        // UIボタンを作成.
-        myButtonStart = UIButton(frame: CGRectMake(0,0,120,50))
-        myButtonStop = UIButton(frame: CGRectMake(0,0,120,50))
-        
+			
         // 背景色を設定.
-        myButtonStart.backgroundColor = UIColor.redColor();
-        myButtonStop.backgroundColor = UIColor.grayColor();
+        startBtn.backgroundColor = UIColor.redColor();
+				stopBtn.backgroundColor = UIColor.grayColor()
         
         // 枠を丸くする.
-        myButtonStart.layer.masksToBounds = true
-        myButtonStop.layer.masksToBounds = true
-        
-        // タイトルを設定.
-        myButtonStart.setTitle("撮影", forState: .Normal)
-        myButtonStop.setTitle("停止", forState: .Normal)
-        
+        startBtn.layer.masksToBounds = true
+				stopBtn.layer.masksToBounds = true
+
+			
         // コーナーの半径.
-        myButtonStart.layer.cornerRadius = 20.0
-        myButtonStop.layer.cornerRadius = 20.0
+        startBtn.layer.cornerRadius = 20.0
+				stopBtn.layer.cornerRadius = 20.0
         
         // ボタンの位置を指定.
-        myButtonStart.layer.position = CGPoint(x: self.view.bounds.width/2 - 70, y:self.view.bounds.height-50)
-        myButtonStop.layer.position = CGPoint(x: self.view.bounds.width/2 + 70, y:self.view.bounds.height-50)
+        startBtn.layer.position = CGPoint(x: self.view.bounds.width/2 - 70, y:self.view.bounds.height - 50)
+				stopBtn.layer.position = CGPoint(x: self.view.bounds.width / 2 + 70, y: self.view.bounds.height - 50)
         
-        myButtonStart.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        myButtonStop.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        
-        // イベントを追加.
-        myButtonStart.addTarget(self, action: "onClickMyButton:", forControlEvents: .TouchUpInside)
-        myButtonStop.addTarget(self, action: "onClickMyButton:", forControlEvents: .TouchUpInside)
-        
+        startBtn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+				startBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+				stopBtn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+				stopBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+			
         // UIボタンをViewに追加.
-        self.view.addSubview(myButtonStart);
-        self.view.addSubview(myButtonStop);
+        self.view.addSubview(startBtn);
+				self.view.addSubview(stopBtn)
     }
+	
     
     // ボタンイベント.
-    func onClickMyButton(sender: UIButton){
-        if( sender == myButtonStart ){
-            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-            
-            // フォルダ.
-            let documentsDirectory = paths[0] as String
-            
-            // ファイル名.
-            let filePath : String? = "\(documentsDirectory)/test.mp4"
-            
-            // URL.
-            let fileURL : NSURL = NSURL(fileURLWithPath: filePath!)!
-            
-            // 録画開始.
-            myVideoOutput.startRecordingToOutputFileURL(fileURL, recordingDelegate: self)
-        } else if ( sender == myButtonStop ){
-            myVideoOutput.stopRecording()
-        }
-    }
-    
+		@IBAction func startBtn(sender: UIButton) {
+			startBtn.enabled = false
+			let now = NSDate()
+			let timestamp = now.timeIntervalSince1970
+			let outputFormat = NSDateFormatter()
+			outputFormat.dateFormat = "yyyyMMddHHmmss"
+			let fileName = outputFormat.stringFromDate(now)
+			
+			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+			let documentsDirectory = paths[0] as String // フォルダ.
+			let filePath : String? = "\(documentsDirectory)/\(fileName).mp4" // ファイル名.
+			let fileURL : NSURL = NSURL(fileURLWithPath: filePath!)! // URL.
+			
+			println(fileURL)
+			
+			myVideoOutput.startRecordingToOutputFileURL(fileURL, recordingDelegate: self) // 録画開始.
+		}
+
+	
+		@IBAction func stopBtn(sender: UIButton) {
+			myVideoOutput.stopRecording()
+		}
+	
     //動画がキャプチャーされた後に呼ばれるメソッド.
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         println("didFinishRecordingToOutputFileAtURL")

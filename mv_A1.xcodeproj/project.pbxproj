@@ -15,6 +15,8 @@
 		0809DC6F1A8F226200BD531E /* mv_A1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0809DC6E1A8F226200BD531E /* mv_A1Tests.swift */; };
 		08E4D2681A8F3536001305FA /* RecMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2671A8F3536001305FA /* RecMovieViewController.swift */; };
 		08E4D26A1A8F3BAE001305FA /* MsgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2691A8F3BAE001305FA /* MsgViewController.swift */; };
+		BCE6A9E61A91AD9600C8745D /* RecordedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE6A9E51A91AD9600C8745D /* RecordedViewController.swift */; };
+		BCE6A9EE1A91E92B00C8745D /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE6A9ED1A91E92B00C8745D /* CustomCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		0809DC6E1A8F226200BD531E /* mv_A1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mv_A1Tests.swift; sourceTree = "<group>"; };
 		08E4D2671A8F3536001305FA /* RecMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecMovieViewController.swift; sourceTree = "<group>"; };
 		08E4D2691A8F3BAE001305FA /* MsgViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MsgViewController.swift; sourceTree = "<group>"; };
+		BCE6A9E51A91AD9600C8745D /* RecordedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedViewController.swift; sourceTree = "<group>"; };
+		BCE6A9ED1A91E92B00C8745D /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,8 @@
 				0809DC561A8F226100BD531E /* Supporting Files */,
 				08E4D2671A8F3536001305FA /* RecMovieViewController.swift */,
 				08E4D2691A8F3BAE001305FA /* MsgViewController.swift */,
+				BCE6A9E51A91AD9600C8745D /* RecordedViewController.swift */,
+				BCE6A9ED1A91E92B00C8745D /* CustomCell.swift */,
 			);
 			path = mv_A1;
 			sourceTree = "<group>";
@@ -125,11 +131,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0809DC721A8F226200BD531E /* Build configuration list for PBXNativeTarget "mv_A1" */;
 			buildPhases = (
-				C8397D876B1176422053A334 /* Check Pods Manifest.lock */,
 				0809DC4F1A8F226100BD531E /* Sources */,
 				0809DC501A8F226100BD531E /* Frameworks */,
 				0809DC511A8F226100BD531E /* Resources */,
-				D11F9912ABEBCC407AC12F4D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,39 +219,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		C8397D876B1176422053A334 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D11F9912ABEBCC407AC12F4D /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		0809DC4F1A8F226100BD531E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -255,7 +226,9 @@
 			files = (
 				08E4D26A1A8F3BAE001305FA /* MsgViewController.swift in Sources */,
 				0809DC5B1A8F226100BD531E /* ViewController.swift in Sources */,
+				BCE6A9E61A91AD9600C8745D /* RecordedViewController.swift in Sources */,
 				0809DC591A8F226100BD531E /* AppDelegate.swift in Sources */,
+				BCE6A9EE1A91E92B00C8745D /* CustomCell.swift in Sources */,
 				08E4D2681A8F3536001305FA /* RecMovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,10 +354,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -395,10 +364,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
