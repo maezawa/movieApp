@@ -121,10 +121,8 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 			
 			let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 			let documentsDirectory = paths[0] as String // フォルダ.
-			let filePath : String? = "\(documentsDirectory)/\(fileName).mp4" // ファイル名.
+			let filePath : String? = "\(documentsDirectory)/\(fileName).mov" // ファイル名.
 			let fileURL : NSURL = NSURL(fileURLWithPath: filePath!)! // URL.
-			
-			println(fileURL)
 			
 			myVideoOutput.startRecordingToOutputFileURL(fileURL, recordingDelegate: self) // 録画開始.
 		}

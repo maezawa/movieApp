@@ -12,59 +12,48 @@ import AssetsLibrary
 
 class ViewController: UIViewController {
 	@IBOutlet var movieCollection: [UICollectionView]!
+	@IBOutlet var checkButton: UIButton!
+	@IBOutlet var sortButton: UIButton!
+	
+	let manager = NSFileManager.defaultManager()
+	let files : Array<String>
+	let paths : AnyObject
+	let documentsDirectory : String
+	var movList : Array<String>
+	var cells : Array<Bool>
+	var selectedMovie : Array<String>
 	
 	
+	required init(coder aDecoder: NSCoder) {
+		self.files = [""]
+		self.paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+		self.documentsDirectory = self.paths[0] as String
+		self.movList = [""]
+		self.cells = []
+		self.selectedMovie = []
+		super.init(coder: aDecoder)
+		self.files = listFilesFromDocumentsFolder()
+		self.cells = Array(count: self.files.count, repeatedValue: false)
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationController?.navigationBarHidden = true
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 	
-	func getCount() -> Array<AnyObject>{
-		let manager = NSFileManager.defaultManager()
-		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-		let documentsDirectory = paths[0] as String // フォルダ.
-		let list = manager.contentsOfDirectoryAtPath(documentsDirectory, error: nil)!
-		return list
-	}
-	
-	func getThumbnails() -> Array<UIImage>{
-		var images:[UIImage] = []
-		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
-		let documentsDirectory = paths[0] as NSString // フォルダ.
-		let filemanager : NSFileManager = NSFileManager()
-		let files = filemanager.enumeratorAtPath(documentsDirectory)
-		
-		
-		while let file: AnyObject = files?.nextObject() {
-			let myFilePath = documentsDirectory.stringByAppendingPathComponent(file as String)
-			let fileURL = NSURL(fileURLWithPath: myFilePath)
-			let avAsset = AVURLAsset(URL: fileURL, options: nil)
-			
-			// assetから画像をキャプチャーする為のジュネレーターを生成.
-			let generator = AVAssetImageGenerator(asset: avAsset)
-			let time = CMTimeMakeWithSeconds(1.0, 1)
-			var actualTime : CMTime = CMTimeMake(0, 0)
-			var error : NSError?
-			//generator.maximumSize = CGSize(width: 100, height: 100)
-			
-			// 動画の指定した時間での画像を得る.
-			let capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
-			let img = UIImage(CGImage: capturedImage!)
-			images.append(img!)
-		}
-		
-		return images
-	}
-
 	// MARK: - UICollectionViewDelegate Protocol
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+		collectionView.allowsMultipleSelection = true
 		let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCell
-		let list = getCount()
-		let thumbnail = getThumbnails()
-		cell.backgroundColor = UIColor.blackColor()
-		cell.image.image = thumbnail[indexPath.item]
-		
+
+		if (self.files.count > 0 && self.files[0] != ""){
+			let thumbnail = getThumbnails(files)
+			cell.backgroundColor = UIColor.blackColor()
+			cell.image.image = thumbnail[indexPath.item]
+		}else{
+			println("You've not taken any movies.")
+		}
 		return cell
 	}
  
@@ -73,9 +62,62 @@ class ViewController: UIViewController {
 	}
  
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		let list = getCount()
-		return list.count
+		return self.files.count
 	}
+	
+	
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
+		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+		let isSelected = cell?.contentView.subviews[1] as UIImageView
+		if (isSelected.highlighted){ self.cells[indexPath.item] = true }
+		println(self.cells)
+	}
+	
+	func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath){
+		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+		let isSelected = cell?.contentView.subviews[1] as UIImageView
+		if (isSelected.highlighted != true){ self.cells[indexPath.item] = false }
+		println(self.cells)
+
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		if (segue.identifier == "forSort"){
+			let sortViewController: SortViewController = segue.destinationViewController as SortViewController
+			for (var i = 0; i < cells.count; i++){
+				if (cells[i] == true){
+					selectedMovie.append(movList[i])
+				}
+			}
+			sortViewController.param = self.selectedMovie
+		}
+	}
+	
+	
+	func getThumbnails(files: Array<String>) -> Array<UIImage>{
+		var images:[UIImage] = []
+
+		for file in self.files {
+			let myFilePath = self.documentsDirectory.stringByAppendingPathComponent(file as String)
+			let fileURL = NSURL(fileURLWithPath: myFilePath)
+			let avAsset = AVURLAsset(URL: fileURL, options: nil)
+			
+			// assetから画像をキャプチャーする為のジュネレーターを生成.
+			let generator = AVAssetImageGenerator(asset: avAsset)
+			let time = CMTimeMakeWithSeconds(1.0, 1)
+			var actualTime : CMTime = CMTimeMake(0, 0)
+			var error : NSError?
+			
+			// 動画の指定した時間での画像を得る.
+			let capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
+			let img = UIImage(CGImage: capturedImage!)
+			let thumbnail = cropThumbnailImage(img!, w: 640, h: 640)
+			images.append(thumbnail)
+		}
+		
+		return images
+	}
+
 	
 	// Make a Thumbnail
 	func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage{
@@ -113,6 +155,31 @@ class ViewController: UIViewController {
 		
 		return cropImage!
 	}
+	
+	// ファイル一覧Get
+	func listFilesFromDocumentsFolder() -> [String]{
+		var theError = NSErrorPointer()
+		let dirs = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,
+			NSSearchPathDomainMask.AllDomainsMask, true) as? [String]
+		
+		if (dirs != nil){
+			let dir = dirs![0]
+			let fileList = NSFileManager.defaultManager().contentsOfDirectoryAtPath(dir, error: theError) as [String]
+			let count = fileList.count
+			self.movList.removeAtIndex(0)
+			
+			for (var i:Int = 0; i < count; i++){
+				if (fileList[i].hasSuffix("mov")){
+					self.movList.append(fileList[i])
+				}
+			}
+			return self.movList
+		}else{
+			let movList = [""]
+			return movList
+		}
+	}
+
 
 	
 	override func didReceiveMemoryWarning() {

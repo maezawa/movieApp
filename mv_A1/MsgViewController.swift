@@ -97,6 +97,14 @@ class MsgViewController: UIViewController {
 		}
 		
 		input.markAsFinished()
+		
+		// 保存しましたアラート
+		var alert = UIAlertView()
+		alert.title = "メッセージ・ムービー作成完了"
+		alert.message = "メッセージを作成しました。"
+		alert.addButtonWithTitle("OK")
+		alert.show()
+		
 		writer.finishWritingWithCompletionHandler({
 			if writer.status == AVAssetWriterStatus.Failed {
 				println("Occurred an error \(writer)")
