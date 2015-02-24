@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.navigationController?.navigationBarHidden = true
+//		self.navigationController?.navigationBarHidden = true
 		// Do any additional setup after loading the view, typically from a nib.
 	}
 	
@@ -70,15 +70,12 @@ class ViewController: UIViewController {
 		let cell = collectionView.cellForItemAtIndexPath(indexPath)
 		let isSelected = cell?.contentView.subviews[1] as UIImageView
 		if (isSelected.highlighted){ self.cells[indexPath.item] = true }
-		println(self.cells)
 	}
 	
 	func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath){
 		let cell = collectionView.cellForItemAtIndexPath(indexPath)
 		let isSelected = cell?.contentView.subviews[1] as UIImageView
 		if (isSelected.highlighted != true){ self.cells[indexPath.item] = false }
-		println(self.cells)
-
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

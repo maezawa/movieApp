@@ -41,24 +41,11 @@
                                     <segue destination="284-IG-Khj" kind="push" identifier="forMsg" id="lZu-iU-GvJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0m-N6-NMv">
-                                <rect key="frame" x="92" y="488" width="136" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="9HL-SS-IT2"/>
-                                    <constraint firstAttribute="width" constant="136" id="cbQ-i7-vZ6"/>
-                                </constraints>
-                                <state key="normal" title="ムービーを作成する">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="xot-il-RCj" kind="push" identifier="forSort" id="AtT-5e-CgD"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-Kd-b6w">
-                                <rect key="frame" x="16" y="0.0" width="288" height="385"/>
+                                <rect key="frame" x="16" y="72" width="288" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="385" id="OKs-0a-OWz"/>
+                                    <constraint firstAttribute="height" constant="427" id="OKs-0a-OWz"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="Ec8-Tv-Pua">
                                     <size key="itemSize" width="90" height="90"/>
@@ -109,24 +96,61 @@
                         <constraints>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Wim-oB-6fy" secondAttribute="bottom" constant="16" id="Md2-GJ-s1a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eLc-Kd-b6w" secondAttribute="trailing" id="NXY-LE-HlI"/>
-                            <constraint firstItem="eLc-Kd-b6w" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="UbP-HB-pVV"/>
+                            <constraint firstItem="eLc-Kd-b6w" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="72" id="UbP-HB-pVV"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="H4L-kf-LqS" secondAttribute="bottom" constant="16" id="Vi6-A8-4wU"/>
-                            <constraint firstAttribute="centerX" secondItem="P0m-N6-NMv" secondAttribute="centerX" id="Ztb-bq-Cj2"/>
                             <constraint firstItem="eLc-Kd-b6w" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="e6O-Me-Adq"/>
                             <constraint firstItem="Wim-oB-6fy" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="g2U-6r-xsx"/>
-                            <constraint firstItem="Wim-oB-6fy" firstAttribute="top" secondItem="P0m-N6-NMv" secondAttribute="bottom" constant="4" id="qEO-Ke-B47"/>
                             <constraint firstItem="H4L-kf-LqS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="uwJ-YM-aSn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="buk-UX-DcD"/>
+                    <navigationItem key="navigationItem" id="buk-UX-DcD">
+                        <barButtonItem key="rightBarButtonItem" title="ソート" id="b97-98-NfS">
+                            <connections>
+                                <segue destination="z76-kF-JtX" kind="push" identifier="forSort" id="See-iV-WP7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="sortButton" destination="P0m-N6-NMv" id="8F3-ca-CbM"/>
                         <outletCollection property="movieCollection" destination="eLc-Kd-b6w" collectionClass="NSMutableArray" id="40M-OQ-N0j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="927" y="406"/>
+        </scene>
+        <!--カットの順番を決める-->
+        <scene sceneID="gIw-Ls-jXE">
+            <objects>
+                <tableViewController id="z76-kF-JtX" customClass="SortViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MWS-7b-HfI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="mAZ-Ya-AJe">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mAZ-Ya-AJe" id="2ZA-Q3-llK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="z76-kF-JtX" id="w5p-3L-D3O"/>
+                            <outlet property="delegate" destination="z76-kF-JtX" id="O4c-9Q-fkU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="カットの順番を決める" id="NmQ-CH-nkX">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="CdJ-UR-Jno"/>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="5oZ-qg-QzT">
+                            <connections>
+                                <action selector="startEdit:" destination="z76-kF-JtX" id="Sxu-FD-pWf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUY-7c-6Ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1397" y="406"/>
         </scene>
         <!--Making Movie View Controller-->
         <scene sceneID="xgi-q5-pyN">
@@ -145,62 +169,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pjb-Zu-wsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2093" y="531"/>
-        </scene>
-        <!--Sort View Controller-->
-        <scene sceneID="qX3-ex-4QZ">
-            <objects>
-                <viewController id="xot-il-RCj" customClass="SortViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="l7Z-B8-EgE"/>
-                        <viewControllerLayoutGuide type="bottom" id="QsV-hf-5gK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ceU-Fm-p9c">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aVX-03-Sam">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="497"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="uVj-VF-jhj">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uVj-VF-jhj" id="uDd-Gn-rdg">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="xot-il-RCj" id="Nz6-cL-2lO"/>
-                                    <outlet property="delegate" destination="xot-il-RCj" id="e9m-FO-qC6"/>
-                                </connections>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hTT-mb-8xV">
-                                <rect key="frame" x="16" y="518" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="46" id="EEj-9J-EAf"/>
-                                    <constraint firstAttribute="height" constant="30" id="vug-9f-Qrx"/>
-                                </constraints>
-                                <state key="normal" title="戻る">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="hTT-mb-8xV" firstAttribute="leading" secondItem="ceU-Fm-p9c" secondAttribute="leadingMargin" id="ghr-05-mtA"/>
-                            <constraint firstItem="QsV-hf-5gK" firstAttribute="top" secondItem="hTT-mb-8xV" secondAttribute="bottom" constant="20" id="oi0-vm-o3R"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="1zE-WQ-23D"/>
-                    <connections>
-                        <outlet property="tableView" destination="aVX-03-Sam" id="0XM-Ff-zv4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JXe-Hm-Zi8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1673" y="531"/>
+            <point key="canvasLocation" x="2495" y="531"/>
         </scene>
         <!--Rec Movie View Controller-->
         <scene sceneID="28E-A2-4A2">
@@ -449,7 +418,7 @@
         <!--Navigation Controller-->
         <scene sceneID="tAs-ck-rej">
             <objects>
-                <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="fXY-y2-Lk8" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="fXY-y2-Lk8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="FsL-c0-cJI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -476,7 +445,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="L8x-5h-uph"/>
-        <segue reference="oQ1-RU-a0w"/>
+        <segue reference="31x-LC-O3P"/>
         <segue reference="lZu-iU-GvJ"/>
     </inferredMetricsTieBreakers>
 </document>

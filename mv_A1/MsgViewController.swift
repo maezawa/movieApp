@@ -15,8 +15,8 @@ class MsgViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-		self.navigationController?.navigationBarHidden = true
-        
+//		self.navigationController?.navigationBarHidden = true
+		
 		MsgTextArea.layer.masksToBounds = true
 		MsgTextArea.layer.cornerRadius = 4.0
 		MsgTextArea.layer.borderWidth = 1
