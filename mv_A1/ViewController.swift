@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 	@IBOutlet var movieCollection: [UICollectionView]!
 	@IBOutlet var checkButton: UIButton!
 	@IBOutlet var sortButton: UIButton!
+	@IBOutlet var toSortButton: UIBarButtonItem!
 	
 	let manager = NSFileManager.defaultManager()
 	let files : Array<String>
@@ -38,6 +39,19 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+//		
+//		let sortButton = UIButton()
+//		sortButton.setTitle("ソート", forState: .Normal)
+//		sortButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+//		sortButton.frame = CGRectMake(0, 0, 100.0, 24.0)
+//		sortButton.backgroundColor = UIColor.whiteColor()
+//		sortButton.layer.borderColor = UIColor.blueColor().CGColor
+//		sortButton.layer.borderWidth = 1
+//		sortButton.layer.cornerRadius = 4
+//		let sortBarButton = UIBarButtonItem(customView: sortButton)
+//		toSortButton = sortBarButton
+//		self.navigationItem.rightBarButtonItem = toSortButton
+		
 //		self.navigationController?.navigationBarHidden = true
 		// Do any additional setup after loading the view, typically from a nib.
 	}

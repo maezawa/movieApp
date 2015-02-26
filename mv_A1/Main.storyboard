@@ -111,6 +111,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="toSortButton" destination="b97-98-NfS" id="kgK-wT-CKc"/>
                         <outletCollection property="movieCollection" destination="eLc-Kd-b6w" collectionClass="NSMutableArray" id="40M-OQ-N0j"/>
                     </connections>
                 </viewController>
@@ -122,7 +123,7 @@
         <scene sceneID="gIw-Ls-jXE">
             <objects>
                 <tableViewController id="z76-kF-JtX" customClass="SortViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="MWS-7b-HfI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="MWS-7b-HfI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -139,6 +140,13 @@
                             <outlet property="delegate" destination="z76-kF-JtX" id="O4c-9Q-fkU"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" id="Dq7-Uz-5kg">
+                            <connections>
+                                <segue destination="e30-LK-cIu" kind="push" identifier="tobgm" id="Kmn-BR-cTB"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="カットの順番を決める" id="NmQ-CH-nkX">
                         <barButtonItem key="backBarButtonItem" title="Back" id="CdJ-UR-Jno"/>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="5oZ-qg-QzT">
@@ -147,29 +155,113 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="foot" destination="Dq7-Uz-5kg" id="FP6-rH-cZ2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUY-7c-6Ef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1397" y="406"/>
+            <point key="canvasLocation" x="1387" y="406"/>
         </scene>
-        <!--Making Movie View Controller-->
-        <scene sceneID="xgi-q5-pyN">
+        <!--BGMを選択-->
+        <scene sceneID="vvT-uw-vmM">
             <objects>
-                <viewController storyboardIdentifier="makingMovie" id="fdB-jE-dLx" customClass="makingMovieViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8Em-XD-j9L"/>
-                        <viewControllerLayoutGuide type="bottom" id="j2J-ME-tC1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Q5p-p0-Rfu">
+                <tableViewController id="e30-LK-cIu" customClass="BGMSelectViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="3" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="PId-jl-Vd8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="5iD-fE-dKE"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pjb-Zu-wsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <sections>
+                            <tableViewSection id="bhN-cB-8C8">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="QlZ-vP-AIV" customClass="BGMCell" customModule="mv_A1" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlZ-vP-AIV" id="gEy-4M-vE2">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pop #1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XN-iG-TBH">
+                                                    <rect key="frame" x="100" y="30" width="58" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="btn1" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uCb-Jx-zSo">
+                                                    <rect key="frame" x="10" y="16" width="50" height="50"/>
+                                                    <state key="normal" image="play.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onClickBtn1:" destination="e30-LK-cIu" eventType="touchUpInside" id="gc3-AU-k2x"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell tag="1" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="uqT-UH-z2P" customClass="BGMCell" customModule="mv_A1" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="center" tableViewCell="uqT-UH-z2P" id="NoB-qt-BWV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pop #2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mso-ZU-SEt">
+                                                    <rect key="frame" x="100" y="30" width="58" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="btn2" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5he-Xg-Blv">
+                                                    <rect key="frame" x="10" y="16" width="50" height="50"/>
+                                                    <state key="normal" image="play.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onClickBtn2:" destination="e30-LK-cIu" eventType="touchUpInside" id="gsf-6D-UnQ"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell tag="2" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="U2Y-Q4-5o0" customClass="BGMCell" customModule="mv_A1" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="center" tableViewCell="U2Y-Q4-5o0" id="qWX-id-ejK">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pop #3" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nx7-pa-7vG">
+                                                    <rect key="frame" x="100" y="30" width="58" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="btn3" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BX2-Tr-aTk">
+                                                    <rect key="frame" x="10" y="16" width="50" height="50"/>
+                                                    <state key="normal" image="play.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="onClickBtn3:" destination="e30-LK-cIu" eventType="touchUpInside" id="4v9-Q2-xR2"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="e30-LK-cIu" id="fcI-gf-gKq"/>
+                            <outlet property="delegate" destination="e30-LK-cIu" id="vQi-mx-Fsc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="BGMを選択" id="dPg-2X-w9y"/>
+                    <connections>
+                        <outlet property="btn1" destination="uCb-Jx-zSo" id="BlT-6w-rxf"/>
+                        <outlet property="btn2" destination="5he-Xg-Blv" id="eNe-d4-k62"/>
+                        <outlet property="btn3" destination="BX2-Tr-aTk" id="vyC-ft-6Dt"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M2W-Tm-4bp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2495" y="531"/>
+            <point key="canvasLocation" x="1787" y="405"/>
         </scene>
         <!--Rec Movie View Controller-->
         <scene sceneID="28E-A2-4A2">
@@ -437,6 +529,7 @@
     <resources>
         <image name="check_green.png" width="50" height="50"/>
         <image name="check_green_0.png" width="50" height="50"/>
+        <image name="play.png" width="120" height="120"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

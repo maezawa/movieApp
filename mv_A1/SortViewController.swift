@@ -11,15 +11,17 @@ import AVFoundation
 import AssetsLibrary
 
 
-class SortViewController: UITableViewController{	
+class SortViewController: UITableViewController{
 	var param : Array<String> = []
 	let files : Array<String> = []
-	
 
+	@IBOutlet var foot: UIBarButtonItem!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView.rowHeight = 84.0
 
+		
 		// Do any additional setup after loading the view.
 	}
 
@@ -68,8 +70,42 @@ class SortViewController: UITableViewController{
 		return 1
 	}
 	
-	@IBAction func startEdit(sender: UIBarButtonItem) {
+	override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+		let footerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
+		let button = UIButton(frame: CGRectMake(0, 0, 120, 48))
+		button.setTitle("BGM選択", forState: .Normal)
+		button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 18.0)
+		button.setTitleColor(UIColor.blueColor(), forState: .Normal)
+		button.backgroundColor = UIColor.whiteColor()
+		button.layer.position = CGPoint(x: footerView.frame.width / 2, y: 32)
+		button.layer.borderWidth = 1
+		button.layer.cornerRadius = 4
+		button.layer.borderColor = UIColor.blueColor().CGColor
+		button.addTarget(self, action: "toBGM", forControlEvents: .TouchUpInside)
+		footerView.addSubview(button)
+		
+		return footerView
+	}
+	
+	override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+		return 48.0
+	}
+	
+	
+	@IBAction func startEdit(sender: UIBarButtonItem){
 		self.editing = !self.editing
+	}
+	
+	@IBAction func toBGM(){
+		println(param)
+		self.performSegueWithIdentifier("tobgm", sender: self)
+	}
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "tobgm"){
+			let BGMViewController : BGMSelectViewController = segue.destinationViewController as BGMSelectViewController
+			BGMViewController.param = self.param
+		}
 	}
 	
 	func getThumbnails(file: String) -> UIImage{

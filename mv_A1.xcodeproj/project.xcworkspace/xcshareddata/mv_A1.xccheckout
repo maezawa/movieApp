@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3EA8A85B-D956-4762-A62E-6A381A7616A8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>mv_A1</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>09AB18BF9C401F9B5EE0AF020D6663918B1EF595</key>
+		<string>https://bitbucket.org/maezawa/movieapp.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>mv_A1.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>09AB18BF9C401F9B5EE0AF020D6663918B1EF595</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/maezawa/movieapp.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>09AB18BF9C401F9B5EE0AF020D6663918B1EF595</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>09AB18BF9C401F9B5EE0AF020D6663918B1EF595</string>
+			<key>IDESourceControlWCCName</key>
+			<string>movieapp</string>
+		</dict>
+	</array>
+</dict>
+</plist>
