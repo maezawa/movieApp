@@ -83,11 +83,9 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
         mySession.startRunning()
 			
         // 背景色を設定.
-        startBtn.backgroundColor = UIColor.redColor();
 				stopBtn.backgroundColor = UIColor.grayColor()
         
         // 枠を丸くする.
-        startBtn.layer.masksToBounds = true
 				stopBtn.layer.masksToBounds = true
 
 			
@@ -96,11 +94,7 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 				stopBtn.layer.cornerRadius = 20.0
         
         // ボタンの位置を指定.
-        startBtn.layer.position = CGPoint(x: self.view.bounds.width/2 - 70, y:self.view.bounds.height - 50)
 				stopBtn.layer.position = CGPoint(x: self.view.bounds.width / 2 + 70, y: self.view.bounds.height - 50)
-        
-        startBtn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-				startBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 				stopBtn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
 				stopBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
 			
@@ -112,7 +106,6 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
     
     // ボタンイベント.
 		@IBAction func startBtn(sender: UIButton) {
-			startBtn.enabled = false
 			let now = NSDate()
 			let timestamp = now.timeIntervalSince1970
 			let outputFormat = NSDateFormatter()
@@ -134,12 +127,16 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 	
     //動画がキャプチャーされた後に呼ばれるメソッド.
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
-        println("didFinishRecordingToOutputFileAtURL")
+			println("didFinishRecordingToOutputFileAtURL")
+			//
     }
     
     //動画のキャプチャーが開始された時に呼ばれるメソッド.
     func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
-        println("didStartRecordingToOutputFileAtURL")
+			println("didStartRecordingToOutputFileAtURL")
+			startBtn.setImage(UIImage(named: "stop.png"), forState: .Normal)
+			NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: nil, userInfo: nil, repeats: false)
+			myVideoOutput.stopRecording()
     }
     
     override func didReceiveMemoryWarning() {

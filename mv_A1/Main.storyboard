@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--ムービーリスト-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController storyboardIdentifier="Main" id="vXZ-lx-hvc" customClass="ViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,36 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4L-kf-LqS">
-                                <rect key="frame" x="26" y="522" width="80" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6HL-SV-7iW"/>
-                                    <constraint firstAttribute="width" constant="80" id="R26-Yh-u3b"/>
-                                </constraints>
-                                <state key="normal" title="動画を撮影"/>
-                                <connections>
-                                    <segue destination="GQr-GI-Xen" kind="push" identifier="forRec" id="L8x-5h-uph"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wim-oB-6fy">
-                                <rect key="frame" x="173" y="522" width="131" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="131" id="3cy-Tc-nbN"/>
-                                    <constraint firstAttribute="height" constant="30" id="frW-42-Mnr"/>
-                                </constraints>
-                                <state key="normal" title="メッセージを作成">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="284-IG-Khj" kind="push" identifier="forMsg" id="lZu-iU-GvJ"/>
-                                </connections>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-Kd-b6w">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-Kd-b6w">
                                 <rect key="frame" x="16" y="72" width="288" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="427" id="OKs-0a-OWz"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="Ec8-Tv-Pua">
                                     <size key="itemSize" width="90" height="90"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -91,19 +64,30 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="Uru-cD-Mu2"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4L-kf-LqS" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="21" y="496" width="117" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                <state key="normal" title="動画を撮影"/>
+                                <connections>
+                                    <segue destination="GQr-GI-Xen" kind="push" identifier="forRec" id="L8x-5h-uph"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wim-oB-6fy" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="146" y="496" width="158" height="64"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                <state key="normal" title="メッセージを作成">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="284-IG-Khj" kind="push" identifier="forMsg" id="lZu-iU-GvJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="Wim-oB-6fy" secondAttribute="bottom" constant="16" id="Md2-GJ-s1a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eLc-Kd-b6w" secondAttribute="trailing" id="NXY-LE-HlI"/>
-                            <constraint firstItem="eLc-Kd-b6w" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="72" id="UbP-HB-pVV"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="H4L-kf-LqS" secondAttribute="bottom" constant="16" id="Vi6-A8-4wU"/>
-                            <constraint firstItem="eLc-Kd-b6w" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="e6O-Me-Adq"/>
-                            <constraint firstItem="Wim-oB-6fy" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="g2U-6r-xsx"/>
-                            <constraint firstItem="H4L-kf-LqS" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="10" id="uwJ-YM-aSn"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="buk-UX-DcD">
+                    <navigationItem key="navigationItem" title="ムービーリスト" id="buk-UX-DcD">
                         <barButtonItem key="rightBarButtonItem" title="ソート" id="b97-98-NfS">
                             <connections>
                                 <segue destination="z76-kF-JtX" kind="push" identifier="forSort" id="See-iV-WP7"/>
@@ -252,16 +236,50 @@
                             <outlet property="delegate" destination="e30-LK-cIu" id="vQi-mx-Fsc"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem id="gDg-Hz-hoe">
+                            <connections>
+                                <segue destination="6vN-4e-xb0" kind="push" identifier="toMerge" id="zLP-XA-dA8"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="BGMを選択" id="dPg-2X-w9y"/>
                     <connections>
                         <outlet property="btn1" destination="uCb-Jx-zSo" id="BlT-6w-rxf"/>
                         <outlet property="btn2" destination="5he-Xg-Blv" id="eNe-d4-k62"/>
                         <outlet property="btn3" destination="BX2-Tr-aTk" id="vyC-ft-6Dt"/>
+                        <outlet property="foot" destination="gDg-Hz-hoe" id="vg6-Dx-rca"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2W-Tm-4bp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1787" y="405"/>
+        </scene>
+        <!--Making Movie View Controller-->
+        <scene sceneID="aJn-k1-zGj">
+            <objects>
+                <viewController id="6vN-4e-xb0" customClass="makingMovieViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bFV-fz-9Ro"/>
+                        <viewControllerLayoutGuide type="bottom" id="nlX-IB-YWa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ac5-Ss-nQx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem id="KN5-H3-pbR">
+                            <connections>
+                                <segue destination="vXZ-lx-hvc" kind="push" identifier="toTop" id="yG0-u4-eDR"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="pBE-9c-dyM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LPL-UR-r9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2203" y="405"/>
         </scene>
         <!--Rec Movie View Controller-->
         <scene sceneID="28E-A2-4A2">
@@ -275,12 +293,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isK-sM-ZnI">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isK-sM-ZnI">
                                 <rect key="frame" x="174" y="510" width="120" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="BVu-9y-BR2"/>
-                                    <constraint firstAttribute="width" constant="120" id="L1Q-Cj-q5w"/>
-                                </constraints>
                                 <state key="normal" title="停止">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -289,14 +303,9 @@
                                     <segue destination="Eej-KR-8gS" kind="push" id="LGh-hP-MUw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jye-j4-jaQ">
-                                <rect key="frame" x="26" y="510" width="120" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="f2o-mB-DGP"/>
-                                    <constraint firstAttribute="height" constant="50" id="iNl-qS-Jii"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="lxC-pY-owp"/>
-                                </constraints>
-                                <state key="normal" title="撮影">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jye-j4-jaQ">
+                                <rect key="frame" x="136" y="510" width="48" height="48"/>
+                                <state key="normal" title="撮影" image="rec.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -305,16 +314,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="isK-sM-ZnI" secondAttribute="trailing" constant="10" id="EyC-aK-eb3"/>
-                            <constraint firstItem="3Ph-ki-zrp" firstAttribute="top" secondItem="jye-j4-jaQ" secondAttribute="bottom" constant="8" id="VAk-So-bhz"/>
-                            <constraint firstItem="3Ph-ki-zrp" firstAttribute="top" secondItem="jye-j4-jaQ" secondAttribute="bottom" constant="8" id="ZGo-yb-pbM"/>
-                            <constraint firstItem="jye-j4-jaQ" firstAttribute="leading" secondItem="mOp-ml-agX" secondAttribute="leadingMargin" constant="10" id="ZR8-dk-w76"/>
-                            <constraint firstItem="jye-j4-jaQ" firstAttribute="top" secondItem="isK-sM-ZnI" secondAttribute="top" id="frZ-Bg-W6z"/>
-                            <constraint firstItem="jye-j4-jaQ" firstAttribute="leading" secondItem="mOp-ml-agX" secondAttribute="leadingMargin" constant="10" id="lWU-jB-AQ7"/>
-                            <constraint firstItem="3Ph-ki-zrp" firstAttribute="top" secondItem="isK-sM-ZnI" secondAttribute="bottom" constant="8" id="qit-95-FX5"/>
-                            <constraint firstItem="3Ph-ki-zrp" firstAttribute="top" secondItem="jye-j4-jaQ" secondAttribute="bottom" constant="8" id="tEM-Dq-fwU"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XDd-hf-An5"/>
                     <connections>
@@ -338,24 +337,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="撮影完了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd8-Z1-dRz">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="撮影完了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd8-Z1-dRz">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="wT3-wz-yf6"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ムービーを撮影しました" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOj-Qf-dM8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ムービーを撮影しました" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOj-Qf-dM8">
                                 <rect key="frame" x="67" y="108" width="187" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udg-RH-mgV">
-                                <rect key="frame" x="107" y="129" width="106" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udg-RH-mgV" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="94" y="144" width="132" height="64"/>
                                 <state key="normal" title="ムービーリスト">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -363,8 +359,8 @@
                                     <segue destination="vXZ-lx-hvc" kind="push" id="oQ1-RU-a0w"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzZ-c9-3eK">
-                                <rect key="frame" x="107" y="159" width="106" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzZ-c9-3eK" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="94" y="216" width="132" height="64"/>
                                 <state key="normal" title="メッセージ作成">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -372,8 +368,8 @@
                                     <segue destination="284-IG-Khj" kind="push" id="DGt-AU-05m"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-iR-LUi">
-                                <rect key="frame" x="115" y="189" width="90" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-iR-LUi" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="94" y="288" width="132" height="64"/>
                                 <state key="normal" title="ムービー撮影">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -383,21 +379,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="udg-RH-mgV" firstAttribute="leading" secondItem="tON-xr-RLK" secondAttribute="leadingMargin" constant="91" id="5YB-9H-yYW"/>
-                            <constraint firstItem="BOj-Qf-dM8" firstAttribute="top" secondItem="kd8-Z1-dRz" secondAttribute="bottom" constant="38" id="IXH-Wx-nkn"/>
-                            <constraint firstItem="tUv-iR-LUi" firstAttribute="top" secondItem="mzZ-c9-3eK" secondAttribute="bottom" id="Klu-fJ-ahN"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="centerX" secondItem="udg-RH-mgV" secondAttribute="centerX" id="OlE-QZ-t8K"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="centerX" secondItem="mzZ-c9-3eK" secondAttribute="centerX" id="TZ9-5Z-Q6Y"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="leading" secondItem="tON-xr-RLK" secondAttribute="leading" id="Vf6-Io-Q9D"/>
-                            <constraint firstItem="udg-RH-mgV" firstAttribute="top" secondItem="BOj-Qf-dM8" secondAttribute="bottom" id="bN6-nB-6ra"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="centerX" secondItem="BOj-Qf-dM8" secondAttribute="centerX" id="f3i-DM-7HE"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="centerX" secondItem="tUv-iR-LUi" secondAttribute="centerX" id="gPO-qk-h4T"/>
-                            <constraint firstAttribute="trailing" secondItem="kd8-Z1-dRz" secondAttribute="trailing" id="n9I-xe-Mjd"/>
-                            <constraint firstItem="mzZ-c9-3eK" firstAttribute="top" secondItem="udg-RH-mgV" secondAttribute="bottom" id="tI3-QW-Rwk"/>
-                            <constraint firstItem="kd8-Z1-dRz" firstAttribute="top" secondItem="tON-xr-RLK" secondAttribute="top" id="ubc-th-eSF"/>
-                            <constraint firstItem="udg-RH-mgV" firstAttribute="leading" secondItem="mzZ-c9-3eK" secondAttribute="leading" id="zhw-ss-SKw"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="nj3-BA-6PJ"/>
                 </viewController>
@@ -417,28 +398,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メッセージを入力してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5e-Lk-xaR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="メッセージを入力してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5e-Lk-xaR">
                                 <rect key="frame" x="41" y="115" width="238" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RJZ-5s-GHK">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RJZ-5s-GHK">
                                 <rect key="frame" x="27" y="138" width="267" height="138"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="138" id="FhX-2P-JiA"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="wwm-Xy-UKT"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-aO-WL5">
-                                <rect key="frame" x="144" y="278" width="32" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="0Xt-Yb-eto"/>
-                                    <constraint firstAttribute="width" constant="32" id="dO4-6G-uQJ"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="メッセージ作成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEX-Kl-fJh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-LR-uhU" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="192" y="496" width="117" height="64"/>
+                                <state key="normal" title="動画を選択"/>
+                                <connections>
+                                    <segue destination="vXZ-lx-hvc" kind="push" id="GXp-Vq-drh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-4D-5oq" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="16" y="496" width="117" height="64"/>
+                                <state key="normal" title="動画を撮影"/>
+                                <connections>
+                                    <segue destination="GQr-GI-Xen" kind="push" id="J8b-RV-vbq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-aO-WL5" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="117" y="278" width="86" height="64"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="保存">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -446,57 +441,8 @@
                                     <action selector="saveText:" destination="284-IG-Khj" eventType="touchDown" id="w01-bP-7cX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メッセージ作成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEX-Kl-fJh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="2SD-PN-pKm"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-LR-uhU">
-                                <rect key="frame" x="219" y="518" width="75" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="75" id="bAl-lw-eEZ"/>
-                                    <constraint firstAttribute="height" constant="30" id="pwt-yg-0eb"/>
-                                </constraints>
-                                <state key="normal" title="動画を選択"/>
-                                <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="GXp-Vq-drh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-4D-5oq">
-                                <rect key="frame" x="36" y="518" width="75" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="cy6-oX-f0q"/>
-                                    <constraint firstAttribute="width" constant="75" id="gv4-0V-mHK"/>
-                                </constraints>
-                                <state key="normal" title="動画を撮影"/>
-                                <connections>
-                                    <segue destination="GQr-GI-Xen" kind="push" id="J8b-RV-vbq"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="RJZ-5s-GHK" secondAttribute="trailing" constant="10" id="0zz-Re-Q9D"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nGn-LR-uhU" secondAttribute="trailing" constant="10" id="3Ml-eL-Qj4"/>
-                            <constraint firstItem="vMO-4D-5oq" firstAttribute="leading" secondItem="vpm-S9-vql" secondAttribute="leadingMargin" constant="20" id="7YM-sP-NMV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JEX-Kl-fJh" secondAttribute="trailing" constant="-16" id="9si-mn-Ibw"/>
-                            <constraint firstItem="mhq-iN-cs6" firstAttribute="top" secondItem="vMO-4D-5oq" secondAttribute="bottom" constant="20" id="CRd-6g-qtc"/>
-                            <constraint firstItem="RJZ-5s-GHK" firstAttribute="leading" secondItem="vpm-S9-vql" secondAttribute="leadingMargin" constant="11" id="GDR-5G-VhJ"/>
-                            <constraint firstAttribute="centerX" secondItem="C5e-Lk-xaR" secondAttribute="centerX" id="Nkc-Qj-NLc"/>
-                            <constraint firstItem="JEX-Kl-fJh" firstAttribute="leading" secondItem="vpm-S9-vql" secondAttribute="leadingMargin" constant="-16" id="aMS-5k-7TS"/>
-                            <constraint firstItem="aQ5-aO-WL5" firstAttribute="top" secondItem="RJZ-5s-GHK" secondAttribute="bottom" constant="2" id="fs7-xc-DI2"/>
-                            <constraint firstAttribute="centerX" secondItem="aQ5-aO-WL5" secondAttribute="centerX" id="l4W-Nw-Uz3"/>
-                            <constraint firstItem="RJZ-5s-GHK" firstAttribute="top" secondItem="C5e-Lk-xaR" secondAttribute="bottom" constant="2" id="py4-Ac-JPj"/>
-                            <constraint firstItem="mhq-iN-cs6" firstAttribute="top" secondItem="nGn-LR-uhU" secondAttribute="bottom" constant="20" id="s3R-oI-lAt"/>
-                            <constraint firstAttribute="centerX" secondItem="RJZ-5s-GHK" secondAttribute="centerX" id="tW3-dQ-7n3"/>
-                            <constraint firstItem="C5e-Lk-xaR" firstAttribute="top" secondItem="JEX-Kl-fJh" secondAttribute="bottom" constant="45" id="vXi-3g-E2A"/>
-                            <constraint firstItem="JEX-Kl-fJh" firstAttribute="top" secondItem="vpm-S9-vql" secondAttribute="topMargin" id="x8O-Vr-7Ag"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8t8-Xs-Ucc"/>
                     <connections>
@@ -530,6 +476,7 @@
         <image name="check_green.png" width="50" height="50"/>
         <image name="check_green_0.png" width="50" height="50"/>
         <image name="play.png" width="120" height="120"/>
+        <image name="rec.png" width="120" height="120"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -537,8 +484,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="L8x-5h-uph"/>
-        <segue reference="31x-LC-O3P"/>
-        <segue reference="lZu-iU-GvJ"/>
+        <segue reference="oQ1-RU-a0w"/>
+        <segue reference="oIN-FV-lEW"/>
+        <segue reference="DGt-AU-05m"/>
     </inferredMetricsTieBreakers>
 </document>

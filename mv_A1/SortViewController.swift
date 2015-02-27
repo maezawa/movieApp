@@ -72,7 +72,8 @@ class SortViewController: UITableViewController{
 	
 	override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 		let footerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
-		let button = UIButton(frame: CGRectMake(0, 0, 120, 48))
+		let button = UIButton(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
+		footerView.backgroundColor = UIColor.whiteColor()
 		button.setTitle("BGM選択", forState: .Normal)
 		button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 18.0)
 		button.setTitleColor(UIColor.blueColor(), forState: .Normal)
