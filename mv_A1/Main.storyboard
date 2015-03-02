@@ -2,13 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fXY-y2-Lk8">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--ムービーリスト-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="Main" id="vXZ-lx-hvc" customClass="ViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="ViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -17,8 +16,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4L-kf-LqS" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="19" y="512" width="117" height="48"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                <state key="normal" title="動画を撮影"/>
+                                <connections>
+                                    <segue destination="GQr-GI-Xen" kind="push" identifier="forRec" id="L8x-5h-uph"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wim-oB-6fy" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="144" y="512" width="158" height="48"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
+                                <state key="normal" title="メッセージを作成">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="284-IG-Khj" kind="push" identifier="forMsg" id="lZu-iU-GvJ"/>
+                                </connections>
+                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-Kd-b6w">
-                                <rect key="frame" x="16" y="72" width="288" height="427"/>
+                                <rect key="frame" x="14" y="70" width="288" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="Ec8-Tv-Pua">
                                     <size key="itemSize" width="90" height="90"/>
@@ -37,20 +56,16 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3hJ-kA-GEQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="check" image="check_green_0.png" highlightedImage="check_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="TSg-QD-NI8">
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="check" image="check_green_0.png" highlightedImage="check_green.png" translatesAutoresizingMaskIntoConstraints="NO" id="TSg-QD-NI8">
                                                     <rect key="frame" x="60" y="60" width="25" height="25"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="TSg-QD-NI8" firstAttribute="leading" secondItem="wZt-dp-hbA" secondAttribute="leadingMargin" constant="52" id="6fM-Z7-vjE"/>
                                             <constraint firstItem="3hJ-kA-GEQ" firstAttribute="leading" secondItem="wZt-dp-hbA" secondAttribute="leading" id="BlU-xQ-6Gw"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="TSg-QD-NI8" secondAttribute="trailing" constant="-3" id="HiI-nK-nee"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="TSg-QD-NI8" secondAttribute="bottom" constant="-3" id="I1d-Dg-BKG"/>
                                             <constraint firstAttribute="trailing" secondItem="3hJ-kA-GEQ" secondAttribute="trailing" id="RKl-gp-HcI"/>
                                             <constraint firstItem="3hJ-kA-GEQ" firstAttribute="top" secondItem="wZt-dp-hbA" secondAttribute="top" id="ho0-n3-b7b"/>
-                                            <constraint firstItem="TSg-QD-NI8" firstAttribute="top" secondItem="wZt-dp-hbA" secondAttribute="topMargin" constant="52" id="j8Z-IZ-DJp"/>
                                             <constraint firstAttribute="bottom" secondItem="3hJ-kA-GEQ" secondAttribute="bottom" id="s9R-FL-wIi"/>
                                         </constraints>
                                         <size key="customSize" width="90" height="90"/>
@@ -64,26 +79,6 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="Uru-cD-Mu2"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4L-kf-LqS" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="21" y="496" width="117" height="64"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
-                                <state key="normal" title="動画を撮影"/>
-                                <connections>
-                                    <segue destination="GQr-GI-Xen" kind="push" identifier="forRec" id="L8x-5h-uph"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wim-oB-6fy" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="146" y="496" width="158" height="64"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <inset key="contentEdgeInsets" minX="8" minY="4" maxX="8" maxY="4"/>
-                                <state key="normal" title="メッセージを作成">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="284-IG-Khj" kind="push" identifier="forMsg" id="lZu-iU-GvJ"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -279,7 +274,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPL-UR-r9y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2203" y="405"/>
+            <point key="canvasLocation" x="2215" y="-309"/>
         </scene>
         <!--Rec Movie View Controller-->
         <scene sceneID="28E-A2-4A2">
@@ -293,19 +288,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="isK-sM-ZnI">
-                                <rect key="frame" x="174" y="510" width="120" height="50"/>
-                                <state key="normal" title="停止">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="stopBtn:" destination="GQr-GI-Xen" eventType="touchUpInside" id="NFe-66-cVU"/>
-                                    <segue destination="Eej-KR-8gS" kind="push" id="LGh-hP-MUw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jye-j4-jaQ">
                                 <rect key="frame" x="136" y="510" width="48" height="48"/>
-                                <state key="normal" title="撮影" image="rec.png">
+                                <state key="normal" image="rec.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -314,79 +299,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                     </view>
                     <navigationItem key="navigationItem" id="XDd-hf-An5"/>
                     <connections>
                         <outlet property="startBtn" destination="jye-j4-jaQ" id="4ga-md-ge0"/>
-                        <outlet property="stopBtn" destination="isK-sM-ZnI" id="Pzw-BS-pnK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DlR-jM-D2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1387" y="1216"/>
+            <point key="canvasLocation" x="212" y="1118"/>
         </scene>
-        <!--Recorded View Controller-->
-        <scene sceneID="DCk-Ym-BaA">
-            <objects>
-                <viewController storyboardIdentifier="recorded" id="Eej-KR-8gS" customClass="RecordedViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Saj-6O-tAj"/>
-                        <viewControllerLayoutGuide type="bottom" id="AJf-vV-Yc3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tON-xr-RLK">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="撮影完了" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kd8-Z1-dRz">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ムービーを撮影しました" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOj-Qf-dM8">
-                                <rect key="frame" x="67" y="108" width="187" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="udg-RH-mgV" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="94" y="144" width="132" height="64"/>
-                                <state key="normal" title="ムービーリスト">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="oQ1-RU-a0w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzZ-c9-3eK" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="94" y="216" width="132" height="64"/>
-                                <state key="normal" title="メッセージ作成">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="284-IG-Khj" kind="push" id="DGt-AU-05m"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUv-iR-LUi" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="94" y="288" width="132" height="64"/>
-                                <state key="normal" title="ムービー撮影">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GQr-GI-Xen" kind="push" id="oIN-FV-lEW"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="nj3-BA-6PJ"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nvj-ki-yle" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1387" y="1872"/>
-        </scene>
-        <!--Msg View Controller-->
+        <!--メッセージテキスト-->
         <scene sceneID="lA1-CM-T98">
             <objects>
                 <viewController storyboardIdentifier="Msg" id="284-IG-Khj" customClass="MsgViewController" customModule="mv_A1" customModuleProvider="target" sceneMemberID="viewController">
@@ -410,29 +334,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="メッセージ作成" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEX-Kl-fJh">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="id" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-LR-uhU" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="192" y="496" width="117" height="64"/>
-                                <state key="normal" title="動画を選択"/>
-                                <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="GXp-Vq-drh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-4D-5oq" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="16" y="496" width="117" height="64"/>
-                                <state key="normal" title="動画を撮影"/>
-                                <connections>
-                                    <segue destination="GQr-GI-Xen" kind="push" id="J8b-RV-vbq"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-aO-WL5" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
-                                <rect key="frame" x="117" y="278" width="86" height="64"/>
+                                <rect key="frame" x="117" y="278" width="86" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="保存">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -441,17 +344,26 @@
                                     <action selector="saveText:" destination="284-IG-Khj" eventType="touchDown" id="w01-bP-7cX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMO-4D-5oq" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                                <rect key="frame" x="102" y="500" width="117" height="48"/>
+                                <state key="normal" title="動画を撮影"/>
+                                <connections>
+                                    <segue destination="GQr-GI-Xen" kind="push" id="J8b-RV-vbq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="8t8-Xs-Ucc"/>
+                    <navigationItem key="navigationItem" title="メッセージテキスト" id="8t8-Xs-Ucc">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="arx-5v-yAJ"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="MsgTextArea" destination="RJZ-5s-GHK" id="Dt9-gg-2Pf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqb-ii-dt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="1284"/>
+            <point key="canvasLocation" x="927" y="1268"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tAs-ck-rej">
@@ -484,8 +396,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="oQ1-RU-a0w"/>
-        <segue reference="oIN-FV-lEW"/>
-        <segue reference="DGt-AU-05m"/>
+        <segue reference="31x-LC-O3P"/>
+        <segue reference="L8x-5h-uph"/>
     </inferredMetricsTieBreakers>
 </document>

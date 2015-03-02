@@ -25,12 +25,11 @@
 		BC1B42301AA03E88007F441A /* Pop3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC1B422D1AA03E88007F441A /* Pop3.mp3 */; };
 		BC1B42311AA03E88007F441A /* Pop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC1B422E1AA03E88007F441A /* Pop2.mp3 */; };
 		BC1B42321AA03E88007F441A /* Pop2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BC1B422E1AA03E88007F441A /* Pop2.mp3 */; };
+		BC1B42331AA049CC007F441A /* RecMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E4D2671A8F3536001305FA /* RecMovieViewController.swift */; };
 		BC59B6CA1A9EB18F008FF4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6C91A9EB18F008FF4E3 /* LaunchScreen.xib */; };
 		BC59B6CB1A9EB18F008FF4E3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6C91A9EB18F008FF4E3 /* LaunchScreen.xib */; };
 		BC59B6CD1A9EB1A6008FF4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6CC1A9EB1A6008FF4E3 /* Main.storyboard */; };
 		BC59B6CE1A9EB1A6008FF4E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6CC1A9EB1A6008FF4E3 /* Main.storyboard */; };
-		BC59B6D31A9EB23C008FF4E3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6D21A9EB23C008FF4E3 /* Info.plist */; };
-		BC59B6D41A9EB23C008FF4E3 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6D21A9EB23C008FF4E3 /* Info.plist */; };
 		BC59B6D61A9EBEF4008FF4E3 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6D51A9EBEF4008FF4E3 /* stop.png */; };
 		BC59B6D71A9EBEF4008FF4E3 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = BC59B6D51A9EBEF4008FF4E3 /* stop.png */; };
 		BC59B6D81A9EE257008FF4E3 /* makingMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFCA1BF1A96FA7300B92C0E /* makingMovieViewController.swift */; };
@@ -267,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCEC18FF1A9DB96A0013F2C9 /* play.png in Resources */,
-				BC59B6D31A9EB23C008FF4E3 /* Info.plist in Resources */,
 				BC59B6D61A9EBEF4008FF4E3 /* stop.png in Resources */,
 				BC1B42311AA03E88007F441A /* Pop2.mp3 in Resources */,
 				BCEC18F61A9DB10E0013F2C9 /* Pop1.mp3 in Resources */,
@@ -286,7 +284,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC1B422C1AA035A9007F441A /* rec.png in Resources */,
-				BC59B6D41A9EB23C008FF4E3 /* Info.plist in Resources */,
 				BC1B42301AA03E88007F441A /* Pop3.mp3 in Resources */,
 				BC59B6D71A9EBEF4008FF4E3 /* stop.png in Resources */,
 				BC59B6CE1A9EB1A6008FF4E3 /* Main.storyboard in Resources */,
@@ -325,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1B42331AA049CC007F441A /* RecMovieViewController.swift in Sources */,
 				BC1B42241A9FEDA8007F441A /* JHProgressHUD.swift in Sources */,
 				BC78B4191A9B1E4300D9597A /* SortViewController.swift in Sources */,
 				BC59B6D81A9EE257008FF4E3 /* makingMovieViewController.swift in Sources */,
@@ -365,7 +363,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mitsuhrio Maezawa (LR8C9UFULY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mitsuhrio Maezawa (LR8C9UFULY)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -382,7 +381,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -407,7 +406,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mitsuhrio Maezawa (LR8C9UFULY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mitsuhrio Maezawa (LR8C9UFULY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -418,8 +418,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -430,6 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -440,6 +442,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = mv_A1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

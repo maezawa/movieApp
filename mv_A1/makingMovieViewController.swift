@@ -30,7 +30,7 @@ class makingMovieViewController: UIViewController {
 		let trackVideo:AVMutableCompositionTrack = composition.addMutableTrackWithMediaType(AVMediaTypeVideo, preferredTrackID: CMPersistentTrackID())
 		let trackAudio:AVMutableCompositionTrack = composition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: CMPersistentTrackID())
 		// local mp3 file settinig
-		let mp3FilePath = NSBundle.mainBundle().pathForResource("Pop1", ofType: "mp3")!
+		let mp3FilePath = NSBundle.mainBundle().pathForResource("Pop" + String(tune), ofType: "mp3")!
 		let mp3FileURL  = NSURL(fileURLWithPath: mp3FilePath)
 		let mp3track:AVMutableCompositionTrack = composition.addMutableTrackWithMediaType(AVMediaTypeAudio, preferredTrackID: CMPersistentTrackID())		
 		let mp3Asset = AVURLAsset(URL: mp3FileURL, options: nil)

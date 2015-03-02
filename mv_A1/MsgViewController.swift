@@ -88,7 +88,7 @@ class MsgViewController: UIViewController {
 		buffer = pixelBufferFromCGImage(CGimage, size: size)
 		var appendOk = false
 		var j : Int64 = 0
-		while (j < 30) {
+		while (j < 50) {
 			if pixelBufferAdaptor.assetWriterInput.readyForMoreMediaData {
 				let frameTime = CMTimeMake(j * 30, 30)
 				appendOk = pixelBufferAdaptor.appendPixelBuffer(buffer, withPresentationTime: frameTime)
