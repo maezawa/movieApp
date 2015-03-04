@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLc-Kd-b6w">
-                                <rect key="frame" x="14" y="70" width="288" height="427"/>
+                                <rect key="frame" x="16" y="70" width="288" height="427"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="3" id="Ec8-Tv-Pua">
                                     <size key="itemSize" width="90" height="90"/>
@@ -62,6 +62,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="3hJ-kA-GEQ" firstAttribute="leading" secondItem="wZt-dp-hbA" secondAttribute="leading" id="BlU-xQ-6Gw"/>
                                             <constraint firstAttribute="trailing" secondItem="3hJ-kA-GEQ" secondAttribute="trailing" id="RKl-gp-HcI"/>
@@ -71,6 +72,7 @@
                                         <size key="customSize" width="90" height="90"/>
                                         <connections>
                                             <outlet property="image" destination="3hJ-kA-GEQ" id="hyE-Eg-8kb"/>
+                                            <outletCollection property="gestureRecognizers" destination="6qS-3T-dRh" appends="YES" id="kkM-dI-p9x"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -90,11 +92,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="eLc-Kd-b6w" id="ceG-gf-bl2"/>
+                        <outlet property="longPress" destination="6qS-3T-dRh" id="n5Z-bW-LwX"/>
                         <outlet property="toSortButton" destination="b97-98-NfS" id="kgK-wT-CKc"/>
-                        <outletCollection property="movieCollection" destination="eLc-Kd-b6w" collectionClass="NSMutableArray" id="40M-OQ-N0j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="6qS-3T-dRh">
+                    <connections>
+                        <action selector="longPress:" destination="vXZ-lx-hvc" id="zqf-Vt-0Ah"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="927" y="406"/>
         </scene>

@@ -25,6 +25,7 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 	var videoInput : AVCaptureDeviceInput!
 	
 	@IBOutlet var startBtn: UIButton!
+	@IBOutlet var myVideoLayer: AVCaptureVideoPreviewLayer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -35,6 +36,9 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 		swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
 		self.view.addGestureRecognizer(swipeLeft)
 		
+		let pinch:UIPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "pinchZoom:")
+		self.view.addGestureRecognizer(pinch)
+		
 		// セッションの作成.
 		mySession = AVCaptureSession()
         
@@ -44,7 +48,7 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 		// バックライトをmyDeviceに格納.
 		for device in devices{
 				if(device.position == AVCaptureDevicePosition.Back){
-						myDevice = device as AVCaptureDevice
+					myDevice = device as AVCaptureDevice
 				}
 		}
         
@@ -74,9 +78,9 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
         
 		// ビデオ出力をOutputに追加.
 		mySession.addOutput(myVideoOutput)
-        
+
 		// 画像を表示するレイヤーを生成.
-		let myVideoLayer : AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(mySession) as AVCaptureVideoPreviewLayer
+		myVideoLayer = AVCaptureVideoPreviewLayer.layerWithSession(mySession) as AVCaptureVideoPreviewLayer
 		myVideoLayer.frame = self.view.bounds
 		myVideoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         
@@ -137,36 +141,46 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 	
 	//動画がキャプチャーされた後に呼ばれるメソッド.
 	func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
-		println("didFinishRecordingToOutputFileAtURL")
 	}
     
 	//動画のキャプチャーが開始された時に呼ばれるメソッド.
 	func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!) {
-		println("didStartRecordingToOutputFileAtURL")
 		startBtn.setImage(UIImage(named: "stop.png"), forState: .Normal)
 	}
 	
 	func swipeLeft(sender: UISwipeGestureRecognizer){
-		println("Swiped")
 		self.backtoMain()
+	}
+	
+	func pinchZoom(sender: UIPinchGestureRecognizer){
+		var error:NSError? = nil
+		var currentZoomScale:CGFloat = 1.0
+		let maxZoomScale = myDevice.activeFormat.videoMaxZoomFactor
+		
+		if (myDevice.lockForConfiguration(&error)){
+			currentZoomScale *= sender.scale
+
+			if (currentZoomScale < 1.0){
+				currentZoomScale = 1.0
+			}else if(maxZoomScale < currentZoomScale){
+				currentZoomScale = maxZoomScale
+			}
+
+			myDevice.rampToVideoZoomFactor(currentZoomScale, withRate: 5.0)
+			myDevice.unlockForConfiguration()
+		}else{
+			println("Error \(error)")
+		}
 	}
 	
 	func backtoMain(){
 		self.mySession.removeInput(self.videoInput)
 		self.mySession.removeOutput(self.myVideoOutput)
 		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let vc : UIViewController = storyboard.instantiateViewControllerWithIdentifier("Main") as UIViewController
 		let hc : UINavigationController = storyboard.instantiateViewControllerWithIdentifier("nav") as UINavigationController
 		self.presentViewController(hc, animated: true, completion: nil)
 	}
-	
-//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//		if (segue.identifier == "toMain"){
-//			mySession.removeInput(videoInput)
-//			mySession.removeOutput(myVideoOutput)
-//			let viewController : ViewController = segue.destinationViewController as ViewController
-//		}
-//	}
+
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
