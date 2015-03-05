@@ -7,21 +7,24 @@
 //
 
 import UIKit
+import AVKit
 import AVFoundation
 import AssetsLibrary
 
 class ViewController: UIViewController {
-	@IBOutlet var toSortButton: UIBarButtonItem!
-	@IBOutlet var longPress: UILongPressGestureRecognizer!
-	@IBOutlet var collectionView: UICollectionView!
+	@IBOutlet weak var toSortButton:UIBarButtonItem!
+	@IBOutlet weak var longPress:UILongPressGestureRecognizer!
+	@IBOutlet weak var collectionView:UICollectionView!
+	@IBOutlet weak var delButton:UIBarButtonItem!
+	@IBOutlet weak var container:UIView!
 	
 	let manager = NSFileManager.defaultManager()
-	var files : Array<String>
-	let paths : AnyObject
-	let documentsDirectory : String
-	var movList : Array<String>
-	var cells : Array<Bool>
-	var selectedMovie : Array<String>
+	var files:Array<String>
+	let paths:AnyObject
+	let documentsDirectory:String
+	var movList:Array<String>
+	var cells:Array<Bool>
+	var selectedMovie:Array<String>
 	
 	required init(coder aDecoder: NSCoder) {
 		self.files = [""]
@@ -37,86 +40,71 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_1.png")!)
 		longPress.minimumPressDuration = 0.5
+		delButton.enabled = false
 		self.collectionView.addGestureRecognizer(longPress)
+		container.frame = CGRectMake(0, 64.0, self.view.bounds.width, 180)
+	}
+	
+	@IBAction func onClickdelButton(sender: AnyObject) {
+		let cells = collectionView.indexPathsForSelectedItems()
+		if (cells.count == 0){
+			return
+		}
+		
+		let files = cells.map({ self.movList[$0.item]})
+
+		for file in files{
+			NSFileManager.defaultManager().removeItemAtPath(self.documentsDirectory + "/" + file, error: nil)
+		}
+		
+		let storyboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+		let hc:UINavigationController = storyboard.instantiateViewControllerWithIdentifier("nav") as UINavigationController
+		self.presentViewController(hc, animated: true, completion: nil)
 	}
 	
 	@IBAction func longPress(sender: UILongPressGestureRecognizer) {
 		if (sender.state != .Ended){
-			return
+			delButton.enabled = !delButton.enabled
 		}
-		
-		let cell:CustomCell = sender.view as CustomCell
-		let p:CGPoint = sender.locationInView(self.collectionView)
-		let indexPath: NSIndexPath = self.collectionView.indexPathForItemAtPoint(p)!
-		let actionIndexPath = indexPath.item
-		let actionFile = self.movList[actionIndexPath]
-		
-		let alert:UIAlertController = UIAlertController(title: "この動画をプレビューしますか？削除しますか？", message: "", preferredStyle: .Alert)
-		let previewAction:UIAlertAction = UIAlertAction(
-			title: "プレビューする",
-			style: .Default,
-			handler: {(action:UIAlertAction!) -> Void in
-				println()
-		})
-		
-		let delAction:UIAlertAction = UIAlertAction(
-			title: "削除する",
-			style: .Default,
-			handler: {(action:UIAlertAction!) -> Void in
-				println(actionFile)
-				self.deleteFiles(actionFile)
-		})
-		
-		let cancelAction:UIAlertAction = UIAlertAction(
-			title: "キャンセル",
-			style: .Cancel,
-			handler: nil
-		)
-		alert.addAction(previewAction)
-		alert.addAction(delAction)
-		alert.addAction(cancelAction)
-		presentViewController(alert, animated: true, completion: nil)
-		/*
-			if (delButton.enabled == true){
-				CATransaction.begin()
-				CATransaction.setCompletionBlock { () -> Void in
-					let rotate:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
-					rotate.duration = 0.125
-					rotate.repeatCount = MAXFLOAT
-					rotate.fromValue = CGFloat(-2 * M_PI / 180) // 開始時の角度
-					rotate.toValue = CGFloat(2 * M_PI / 180)
-					let a = self.collectionView.visibleCells() as Array<CustomCell>
-					
-					for (var i = 0; i < a.count; i++){
-						a[i].layer.addAnimation(rotate, forKey: "rotate-layer")
-					}
-				}
-				CATransaction.commit()
-			}else{
-				let a = self.collectionView.visibleCells() as Array<CustomCell>
-			
+
+		let a = self.collectionView.visibleCells() as Array<CustomCell>
+
+		if (delButton.enabled == true){
+			CATransaction.begin()
+			CATransaction.setCompletionBlock { () -> Void in
+				let rotate:CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation")
+				rotate.duration = 0.125
+				rotate.repeatCount = MAXFLOAT
+				rotate.fromValue = CGFloat(-2 * M_PI / 180) // 開始時の角度
+				rotate.toValue = CGFloat(2 * M_PI / 180)
+				
 				for (var i = 0; i < a.count; i++){
-					a[i].layer.removeAllAnimations()
+					a[i].layer.addAnimation(rotate, forKey: "rotate-layer")
 				}
 			}
-		*/
-		
+			CATransaction.commit()
+		}else{
+			for (var i = 0; i < a.count; i++){
+				a[i].layer.removeAllAnimations()
+			}
+		}
+
 	}
 	
 	// MARK: - UICollectionViewDelegate Protocol
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		collectionView.allowsMultipleSelection = true
-		let cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCell
+		var cell:CustomCell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as CustomCell
+		let thumbnail = getThumbnails(files)
 
-		if (self.files.count > 0 && self.files[0] != ""){
-			let thumbnail = getThumbnails(files)
+		if (files.count > 0 && files[0] != ""){
 			cell.backgroundColor = UIColor.blackColor()
+			cell.layer.cornerRadius = 8.0
+			cell.clipsToBounds = true
 			cell.image.image = thumbnail[indexPath.item]
 			cell.userInteractionEnabled = true
-			
-//			CATransaction.begin()
-//			CATransaction.setAnimationDuration(0.5)
 		}else{
 			println("You've not taken any movies.")
 		}
@@ -132,27 +120,33 @@ class ViewController: UIViewController {
 	}
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-		let isSelected = cell?.contentView.subviews[1] as UIImageView
+		toSortButton.enabled = true
+		container.layer.sublayers = nil
+		var cell = collectionView.cellForItemAtIndexPath(indexPath)
+		var isSelected = cell?.contentView.subviews[1] as UIImageView
 		if (isSelected.highlighted){ self.cells[indexPath.item] = true }
+
+		var file:String = self.movList[indexPath.item]
+		var url:NSURL = NSURL(fileURLWithPath: self.documentsDirectory + "/" + file)!
+		
+		var asset:AVAsset = AVAsset.assetWithURL(url) as AVAsset
+		var playerItem:AVPlayerItem = AVPlayerItem(asset: asset)
+		var avPlayer:AVPlayer = AVPlayer.playerWithPlayerItem(playerItem) as AVPlayer
+		var avPlayerLayer:AVPlayerLayer = AVPlayerLayer(player: avPlayer)
+
+		if (file.rangeOfString("_txt") == nil){ avPlayerLayer.transform = CATransform3DMakeRotation(CGFloat(M_PI * 270 / 180), 0, 0, 1) }
+		
+		avPlayerLayer.frame = CGRectMake(0, 0, container.bounds.width, container.bounds.height)
+		container.layer.addSublayer(avPlayerLayer)
+		avPlayer.play()
 	}
 	
 	func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath){
+		let cells = collectionView.indexPathsForSelectedItems()
+		if (cells.count == 0){ toSortButton.enabled = false }
 		let cell = collectionView.cellForItemAtIndexPath(indexPath)
 		let isSelected = cell?.contentView.subviews[1] as UIImageView
 		if (isSelected.highlighted != true){ self.cells[indexPath.item] = false }
-	}
-	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-		if (segue.identifier == "forSort"){
-			let sortViewController: SortViewController = segue.destinationViewController as SortViewController
-			for (var i = 0; i < cells.count; i++){
-				if (cells[i] == true){
-					selectedMovie.append(movList[i])
-				}
-			}
-			sortViewController.param = self.selectedMovie
-		}
 	}
 	
 	func getThumbnails(files: Array<String>) -> Array<UIImage>{
@@ -170,10 +164,11 @@ class ViewController: UIViewController {
 			var error : NSError?
 			
 			// 動画の指定した時間での画像を得る.
-			let capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
+			var capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
 			let img = UIImage(CGImage: capturedImage!)
-			let thumbnail = cropThumbnailImage(img!, w: 640, h: 640)
+			var thumbnail = cropThumbnailImage(img!, w: 90, h: 90)
 			images.append(thumbnail)
+			capturedImage = nil
 		}
 		
 		return images
@@ -182,16 +177,15 @@ class ViewController: UIViewController {
 	// Make a Thumbnail
 	func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage{
 		// リサイズ処理
-		
 		let origRef    = image.CGImage;
 		let origWidth  = Int(CGImageGetWidth(origRef))
 		let origHeight = Int(CGImageGetHeight(origRef))
 		var resizeWidth:Int = 0, resizeHeight:Int = 0
 		
-		if (origWidth < origHeight) {
+		if (origWidth < origHeight){
 			resizeWidth = w
 			resizeHeight = origHeight * resizeWidth / origWidth
-		} else {
+		}else{
 			resizeHeight = h
 			resizeWidth = origWidth * resizeHeight / origHeight
 		}
@@ -238,14 +232,17 @@ class ViewController: UIViewController {
 			return movList
 		}
 	}
-	
-	func deleteFiles(delFile: String){
-		NSFileManager.defaultManager().removeItemAtPath(self.documentsDirectory + "/" + delFile, error: nil)
-		
-		//collectionView.reloadData()
-		let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-		let hc : UINavigationController = storyboard.instantiateViewControllerWithIdentifier("nav") as UINavigationController
-		self.presentViewController(hc, animated: true, completion: nil)
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+		if (segue.identifier == "forSort"){
+			let sortViewController:SortViewController = segue.destinationViewController as SortViewController
+			for (var i = 0; i < cells.count; i++){
+				if (cells[i] == true){
+					selectedMovie.append(movList[i])
+				}
+			}
+			sortViewController.param = self.selectedMovie
+		}
 	}
 	
 	override func didReceiveMemoryWarning() {

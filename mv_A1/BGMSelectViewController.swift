@@ -14,10 +14,10 @@ class BGMSelectViewController: UITableViewController, UITableViewDelegate, UITab
 	var tune : Int!
 	var myAudioPlayer : Array<AVAudioPlayer>! = nil
 
-	@IBOutlet var btn1: UIButton!
-	@IBOutlet var btn2: UIButton!
-	@IBOutlet var btn3: UIButton!
-	@IBOutlet var foot: UIBarButtonItem!
+	@IBOutlet weak var btn1: UIButton!
+	@IBOutlet weak var btn2: UIButton!
+	@IBOutlet weak var btn3: UIButton!
+	@IBOutlet weak var btnMerge: UIBarButtonItem!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,6 +45,8 @@ class BGMSelectViewController: UITableViewController, UITableViewDelegate, UITab
 			myAudioPlayer[i].prepareToPlay()
 		}
 		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_3.png")!)
+
 		// Uncomment the following line to preserve selection between presentations
 		// self.clearsSelectionOnViewWillAppear = false
 	}
@@ -101,34 +103,13 @@ class BGMSelectViewController: UITableViewController, UITableViewDelegate, UITab
 	}
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		btnMerge.enabled = true
 		self.tune = indexPath.row + 1
 	}
 	
-	override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		let footerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
-		let button = UIButton(frame: CGRectMake(0, 0, 140, 48))
-		footerView.backgroundColor = UIColor.whiteColor()
-		button.setTitle("ムービー作成", forState: .Normal)
-		button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 18.0)
-		button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-		button.backgroundColor = UIColor.whiteColor()
-		button.layer.position = CGPoint(x: footerView.frame.width / 2, y: 32)
-		button.layer.borderWidth = 1
-		button.layer.cornerRadius = 4
-		button.layer.borderColor = UIColor.blueColor().CGColor
-		button.addTarget(self, action: "toMerge", forControlEvents: .TouchUpInside)
-		footerView.addSubview(button)
-		
-		return footerView
-	}
-	
-	override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		return 48.0
-	}
-	
-	@IBAction func toMerge(){
-		self.performSegueWithIdentifier("toMerge", sender: self)
-		println(self.tune)
+	override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+		let cells = super.tableView.indexPathForSelectedRow()
+		if (cells?.length == 0){ btnMerge.enabled = false }
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

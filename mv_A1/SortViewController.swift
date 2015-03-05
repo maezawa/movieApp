@@ -10,17 +10,17 @@ import UIKit
 import AVFoundation
 import AssetsLibrary
 
-
 class SortViewController: UITableViewController{
 	var param : Array<String> = []
 	let files : Array<String> = []
-
-	@IBOutlet var foot: UIBarButtonItem!
+	@IBOutlet weak var btnBGM: UIBarButtonItem!
+	@IBOutlet weak var longpress: UILongPressGestureRecognizer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.tableView.rowHeight = 84.0
-
+		self.tableView.rowHeight = 88.0
+		self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "bg_2.png")!)
+		longpress.minimumPressDuration = 0.5
 		
 		// Do any additional setup after loading the view.
 	}
@@ -48,6 +48,7 @@ class SortViewController: UITableViewController{
 		let thumbnail = getThumbnails(movieFile)
 		cell.imageView?.image = thumbnail
 		cell.imageView?.frame = CGRectMake(0, 0, 80, 80)
+		cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.1)
 		
 		return cell
 	}
@@ -70,42 +71,10 @@ class SortViewController: UITableViewController{
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-		let footerView = UIView(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
-		let button = UIButton(frame: CGRectMake(0, 0, self.view.bounds.width, 64))
-		footerView.backgroundColor = UIColor.whiteColor()
-		button.setTitle("BGM選択", forState: .Normal)
-		button.titleLabel?.font = UIFont(name: "Helvetica-Bold", size: 18.0)
-		button.setTitleColor(UIColor.blueColor(), forState: .Normal)
-		button.backgroundColor = UIColor.whiteColor()
-		button.layer.position = CGPoint(x: footerView.frame.width / 2, y: 32)
-		button.layer.borderWidth = 1
-		button.layer.cornerRadius = 4
-		button.layer.borderColor = UIColor.blueColor().CGColor
-		button.addTarget(self, action: "toBGM", forControlEvents: .TouchUpInside)
-		footerView.addSubview(button)
-		
-		return footerView
-	}
-	
-	override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-		return 48.0
-	}
-	
-	
-	@IBAction func startEdit(sender: UIBarButtonItem){
-		self.editing = !self.editing
-	}
-	
-	@IBAction func toBGM(){
-		println(param)
-		self.performSegueWithIdentifier("tobgm", sender: self)
-	}
-	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if (segue.identifier == "tobgm"){
-			let BGMViewController : BGMSelectViewController = segue.destinationViewController as BGMSelectViewController
-			BGMViewController.param = self.param
+	override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+		if(editingStyle == UITableViewCellEditingStyle.Delete){
+			param.removeAtIndex(indexPath.row)
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 		}
 	}
 	
@@ -122,13 +91,13 @@ class SortViewController: UITableViewController{
 		var error : NSError?
 		
 		// 動画の指定した時間での画像を得る.
-		let capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
+		var capturedImage : CGImageRef! = generator.copyCGImageAtTime(time, actualTime: &actualTime, error: &error)
 		let img = UIImage(CGImage: capturedImage!)
-		let thumbnail = cropThumbnailImage(img!, w: 80, h: 80)
-		
+		var thumbnail = cropThumbnailImage(img!, w: 80, h: 80)
+		capturedImage = nil
+
 		return thumbnail
 	}
-	
 	
 	// Make a Thumbnail
 	func cropThumbnailImage(image :UIImage, w:Int, h:Int) ->UIImage{
@@ -167,20 +136,20 @@ class SortViewController: UITableViewController{
 		return cropImage!
 	}
 	
+	@IBAction func longPress(sender: UILongPressGestureRecognizer) {
+		if (sender.state == .Ended){ self.editing = !self.editing }
+	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if (segue.identifier == "toBGM"){
+			let bgmViewController:BGMSelectViewController = segue.destinationViewController as BGMSelectViewController
+			bgmViewController.param = self.param
+		}
+	}
 
 }

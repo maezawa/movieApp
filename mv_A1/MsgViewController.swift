@@ -16,7 +16,7 @@ class MsgViewController: UIViewController {
 		super.viewDidLoad()
         
 //		self.navigationController?.navigationBarHidden = true
-		
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "bg_2.png")!)
 		MsgTextArea.layer.masksToBounds = true
 		MsgTextArea.layer.cornerRadius = 4.0
 		MsgTextArea.layer.borderWidth = 1
@@ -33,7 +33,7 @@ class MsgViewController: UIViewController {
 		let label : UILabel = UILabel()
 		label.text = msg
 		label.textColor = UIColor.whiteColor()
-		label.font = UIFont.systemFontOfSize(20)
+		label.font = UIFont.systemFontOfSize(24)
 		label.textAlignment = NSTextAlignment.Center
 		label.setTranslatesAutoresizingMaskIntoConstraints(false)
 		label.numberOfLines = 0
@@ -64,7 +64,7 @@ class MsgViewController: UIViewController {
 
 		
 		var error : NSError?
-		let movieName = path + "/" + formatter.stringFromDate(now) + ".mov"
+		let movieName = path + "/" + formatter.stringFromDate(now) + "_txt.mov"
 		let movieURL : NSURL = NSURL(fileURLWithPath: movieName)!
 		let writer = AVAssetWriter(URL: movieURL, fileType: AVFileTypeMPEG4, error: &error)
 		let videoSettings = [
@@ -98,18 +98,28 @@ class MsgViewController: UIViewController {
 		
 		input.markAsFinished()
 		
-		// 保存しましたアラート
-		var alert = UIAlertView()
-		alert.title = "メッセージ・ムービー作成完了"
-		alert.message = "メッセージを作成しました。"
-		alert.addButtonWithTitle("OK")
-		alert.show()
-		
 		writer.finishWritingWithCompletionHandler({
 			if writer.status == AVAssetWriterStatus.Failed {
 				println("Occurred an error \(writer)")
 			}
 		})
+		
+		// 保存しましたアラート
+		let alert:UIAlertController = UIAlertController(title: "メッセージムービー作成完了", message: "メッセージを作成しました。", preferredStyle: .Alert)
+		let backAction:UIAlertAction = UIAlertAction(
+			title: "ムービーリストに戻る",
+			style: .Default,
+			handler: {
+				(action:UIAlertAction!) -> Void in
+				let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+				let hc : UINavigationController = storyboard.instantiateViewControllerWithIdentifier("nav") as UINavigationController
+				self.presentViewController(hc, animated: true, completion: nil)
+		})
+
+		let cancelAction:UIAlertAction = UIAlertAction(title: "作成を続ける", style: .Cancel, handler: nil)
+		alert.addAction(backAction)
+		alert.addAction(cancelAction)
+		presentViewController(alert, animated: true, completion: nil)
 	}
 	
 	func pixelBufferFromCGImage(image: CGImageRef, size: CGSize) -> CVPixelBufferRef {
@@ -141,15 +151,5 @@ class MsgViewController: UIViewController {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
 	}
-	
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -29,7 +29,7 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+		
 		self.navigationController?.navigationBarHidden = true
 
 		let swipeLeft:UISwipeGestureRecognizer  = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
@@ -100,7 +100,7 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 		let now = NSDate()
 		let timestamp = now.timeIntervalSince1970
 		let outputFormat = NSDateFormatter()
-		outputFormat.dateFormat = "yyyyMMddHHmmss"
+		outputFormat.dateFormat = "yyyyMMddHHmmss_txt"
 		let fileName = outputFormat.stringFromDate(now)
 			
 		let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
@@ -131,7 +131,6 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 			style: .Default,
 			handler:{
 				(action:UIAlertAction!) -> Void in
-				println("Go back to Main")
 				self.backtoMain()
 		})
 		alert.addAction(recAction)
@@ -184,18 +183,6 @@ class RecMovieViewController: UIViewController, AVCaptureFileOutputRecordingDele
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
-    
-
-	/*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
