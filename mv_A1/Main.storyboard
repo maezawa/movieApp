@@ -406,7 +406,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-aO-WL5" customClass="aUIButton" customModule="mv_A1" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQ5-aO-WL5">
                                 <rect key="frame" x="86" y="278" width="148" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="BES-v5-vn9"/>
@@ -461,7 +461,6 @@
             <objects>
                 <navigationController storyboardIdentifier="nav" automaticallyAdjustsScrollViewInsets="NO" id="fXY-y2-Lk8" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FsL-c0-cJI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -480,12 +479,12 @@
         <image name="bar_bgm.png" width="36" height="36"/>
         <image name="bar_merge.png" width="32" height="32"/>
         <image name="bar_next.png" width="36" height="36"/>
-        <image name="btn_rec.png" width="64" height="64"/>
+        <image name="btn_rec.png" width="128" height="128"/>
         <image name="btn_save.png" width="148" height="48"/>
-        <image name="btn_txt.png" width="64" height="64"/>
+        <image name="btn_txt.png" width="128" height="128"/>
         <image name="check_green.png" width="50" height="50"/>
         <image name="check_green_0.png" width="50" height="50"/>
-        <image name="play.png" width="120" height="120"/>
+        <image name="play.png" width="128" height="128"/>
         <image name="rec.png" width="120" height="120"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -494,7 +493,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="yG0-u4-eDR"/>
+        <segue reference="31x-LC-O3P"/>
         <segue reference="L8x-5h-uph"/>
     </inferredMetricsTieBreakers>
 </document>

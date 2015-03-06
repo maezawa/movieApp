@@ -24,8 +24,8 @@ class BGMSelectViewController: UITableViewController, UITableViewDelegate, UITab
 
 		let soundFilePath : Array<NSString> = [
 			NSBundle.mainBundle().pathForResource("Pop1", ofType: "mp3")!,
-			NSBundle.mainBundle().pathForResource("Pop1", ofType: "mp3")!,
-			NSBundle.mainBundle().pathForResource("Pop1", ofType: "mp3")!
+			NSBundle.mainBundle().pathForResource("Pop2", ofType: "mp3")!,
+			NSBundle.mainBundle().pathForResource("Pop3", ofType: "mp3")!
 		]
 		
 		let fileURL : Array<NSURL> = [
@@ -52,31 +52,53 @@ class BGMSelectViewController: UITableViewController, UITableViewDelegate, UITab
 	}
 	
 	@IBAction func onClickBtn1(sender: UIButton) {
-		playMusic(1, sender: sender, myAudioPlayer: myAudioPlayer[0])
+		playMusic(sender, myAudioPlayer: myAudioPlayer[0])
+		if (myAudioPlayer[1].playing == true){
+			stopMusic(btn2, myAudioPlayer: myAudioPlayer[1])
+		}
+		if (myAudioPlayer[2].playing == true){
+			stopMusic(btn3, myAudioPlayer: myAudioPlayer[2])
+		}
+		
 	}
 	@IBAction func onClickBtn2(sender: UIButton) {
-		playMusic(1, sender: sender, myAudioPlayer: myAudioPlayer[1])
+		playMusic(sender, myAudioPlayer: myAudioPlayer[1])
+		if (myAudioPlayer[0].playing == true){
+			stopMusic(btn1, myAudioPlayer: myAudioPlayer[0])
+		}
+		if (myAudioPlayer[2].playing == true){
+			stopMusic(btn3, myAudioPlayer: myAudioPlayer[2])
+		}
 	}
 	@IBAction func onClickBtn3(sender: UIButton) {
-		playMusic(1, sender: sender, myAudioPlayer: myAudioPlayer[2])
+		playMusic(sender, myAudioPlayer: myAudioPlayer[2])
+		if (myAudioPlayer[0].playing == true){
+			stopMusic(btn1, myAudioPlayer: myAudioPlayer[0])
+		}
+		if (myAudioPlayer[1].playing == true){
+			stopMusic(btn2, myAudioPlayer: myAudioPlayer[1])
+		}
 	}
 	
 	
-	func playMusic(num: Int, sender: UIButton, myAudioPlayer: AVAudioPlayer){
-		let num = String(num)
+	func playMusic(sender: UIButton, myAudioPlayer: AVAudioPlayer){
 		let playBtn : UIImage = UIImage(named: "play.png")!
 		let stopBtn : UIImage = UIImage(named: "stop.png")!
-		if myAudioPlayer.playing == true {
-			
+		if (myAudioPlayer.playing == true){
 			//myAudioPlayerを一時停止.
 			myAudioPlayer.pause()
 			sender.setImage(playBtn, forState: .Normal)
-		} else {
-			
+		}else{
 			//myAudioPlayerの再生.
 			myAudioPlayer.play()
 			sender.setImage(stopBtn, forState: .Normal)
 		}
+	}
+	
+	func stopMusic(sender: UIButton, myAudioPlayer: AVAudioPlayer){
+		let playBtn : UIImage = UIImage(named: "play.png")!
+		myAudioPlayer.stop()
+		sender.setImage(playBtn, forState: .Normal)
 	}
 	
 	
